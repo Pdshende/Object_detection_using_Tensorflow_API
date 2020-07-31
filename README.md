@@ -10,15 +10,15 @@ written using TensorFlow version 1.5, but will also work for newer versions of T
 I also made a YouTube video that walks through this tutorial. Any discrepancies between the video and this written tutorial are due to updates required for using newer versions of TensorFlow. 
 
 This readme describes every step required to get going with your own object detection classifier: 
-1. [Installing Anaconda, CUDA, and cuDNN](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/new/master#1-install-anaconda-cuda-and-cudnn)
-2. [Setting up the Object Detection directory structure and Anaconda Virtual Environment](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/new/master#2-set-up-tensorflow-directory-and-anaconda-virtual-environment)
-3. [Gathering and labeling pictures](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/new/master#3-gather-and-label-pictures)
-4. [Generating training data](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/new/master#4-generate-training-data)
-5. [Creating a label map and configuring training](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/new/master#5-create-label-map-and-configure-training)
-6. [Training](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/new/master#6-run-the-training)
-7. [Exporting the inference graph](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/new/master#7-export-inference-graph)
-8. [Testing and using your newly trained object detection classifier](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/new/master#8-use-your-newly-trained-object-detection-classifier)
-[Appendix: Common Errors](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/new/master#appendix-common-errors)
+1. [Installing Anaconda, CUDA, and cuDNN](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#1-install-anaconda-cuda-and-cudnn)
+2. [Setting up the Object Detection directory structure and Anaconda Virtual Environment](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#2-set-up-tensorflow-directory-and-anaconda-virtual-environment)
+3. [Gathering and labeling pictures](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#3-gather-and-label-pictures)
+4. [Generating training data](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#4-generate-training-data)
+5. [Creating a label map and configuring training](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#5-create-label-map-and-configure-training)
+6. [Training](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#6-run-the-training)
+7. [Exporting the inference graph](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#7-export-inference-graph)
+8. [Testing and using your newly trained object detection classifier](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#8-use-your-newly-trained-object-detection-classifier)
+[Appendix: Common Errors](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#appendix-common-errors)
 
 The repository provides all the files needed to train a "object_detection" for diffrent types of things such as car 🚘, person 🤵, bike 🚲,etc.
 The tutorial describes how to replace these files with your own files to train a detection classifier for whatever your heart desires. It also has Python scripts to test your classifier out on an image, video, or webcam feed.
