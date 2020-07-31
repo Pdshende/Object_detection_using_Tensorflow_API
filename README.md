@@ -25,6 +25,7 @@ The tutorial describes how to replace these files with your own files to train a
 <p align="center">
   <img src="doc/detector1.jpg">
 </p>
+
 ## Introduction
 
 The purpose of this tutorial is to explain how to train your own convolutional neural network object detection classifier for multiple objects, starting from scratch. At the end of this tutorial, you will have a program that can identify and draw boxes around specific objects in pictures, videos, or in a webcam feed.
