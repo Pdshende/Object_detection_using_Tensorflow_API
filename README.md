@@ -45,16 +45,16 @@ The TensorFlow Object Detection API requires using the specific directory struct
 
 This portion of the tutorial goes over the full set up required. It is fairly meticulous, but follow the instructions closely, because improper setup can cause unwieldy errors down the road.
 #### 2a. Download TensorFlow Object Detection API repository from GitHub
-Create a folder directly in C: and name it âtensorflow1â. This working directory will contain the full TensorFlow object detection framework, as well as your training images, training data, trained classifier, configuration files, and everything else needed for the object detection classifier.
+Create a folder directly in C: and name it "tensorflow1". This working directory will contain the full TensorFlow object detection framework, as well as your training images, training data, trained classifier, configuration files, and everything else needed for the object detection classifier.
 
-Download the full TensorFlow object detection repository located at https://github.com/tensorflow/models by clicking the âClone or Downloadâ button and downloading the zip file. Open the downloaded zip file and extract the âmodels-masterâ folder directly into the C:\tensorflow1 directory you just created. Rename âmodels-masterâ to just âmodelsâ.
+Download the full TensorFlow object detection repository located at https://github.com/tensorflow/models by clicking the "Clone or Download" button and downloading the zip file. Open the downloaded zip file and extract the "models-master" folder directly into the C:\tensorflow1 directory you just created. Rename "models-master" to just "models".
 
 **Note: The TensorFlow models repository's code (which contains the object detection API) is continuously updated by the developers. Sometimes they make changes that break functionality with old versions of TensorFlow. It is always best to use the latest version of TensorFlow and download the latest models repository. If you are not using the latest version, clone or download the commit for the version you are using as listed in the table below.**
 
  If you are using an older version of TensorFlow, here is a table showing which GitHub commit of the repository you should use. I generated this by going to the release branches for the models repository and getting the commit before the last commit for the branch. (They remove the research folder as the last commit before they create the official version release.)
  
 #### 2b. Download the Faster-RCNN-Inception-V2-COCO model from TensorFlow's model zoo
-TensorFlow provides several object detection models (pre-trained classifiers with specific neural network architectures) in its [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md). Some models (such as the SSD-MobileNet model) have an architecture that allows for faster detection but with less accuracy, while some models (such as the Faster-RCNN model) give slower detection but with more accuracy. I initially started with the SSD-MobileNet-V1 model, but it didnât do a very good job identifying the cards in my images. I re-trained my detector on the Faster-RCNN-Inception-V2 model, and the detection worked considerably better, but with a noticeably slower speed.
+TensorFlow provides several object detection models (pre-trained classifiers with specific neural network architectures) in its [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md). Some models (such as the SSD-MobileNet model) have an architecture that allows for faster detection but with less accuracy, while some models (such as the Faster-RCNN model) give slower detection but with more accuracy. I initially started with the SSD-MobileNet-V1 model, but it didn't do a very good job identifying the cards in my images. I re-trained my detector on the Faster-RCNN-Inception-V2 model, and the detection worked considerably better, but with a noticeably slower speed.
 
 You can choose which model to train your objection detection classifier on. If you are planning on using the object detector on a device with low computational power (such as a smart phone or Raspberry Pi), use the SDD-MobileNet model. If you will be running your detector on a decently powered laptop or desktop PC, use one of the RCNN models. 
 
@@ -71,16 +71,16 @@ This repository contains the images, annotation data, .csv files, and TFRecords 
 If you want to practice training your own "Pinochle Deck" card detector, you can leave all the files as they are. You can follow along with this tutorial to see how each of the files were generated, and then run the training. You will still need to generate the TFRecord files (train.record and test.record) as described in Step 4. 
 If you want to train your own object detector, delete the following files (do not delete the folders):
 - All files in \object_detection\images\train and \object_detection\images\test
-- The âtest_labels.csvâ and âtrain_labels.csvâ files in \object_detection\images
+- The "test_labels.csv" and "train_labels.csv" files in \object_detection\images
 - All files in \object_detection\training
 -	All files in \object_detection\inference_graph
 
 Now, you are ready to start from scratch in training your own object detector. This tutorial will assume that all the files listed above were deleted, and will go on to explain how to generate the files for your own training dataset.
 
 #### 2d. Set up new Anaconda virtual environment
-Next, we'll work on setting up a virtual environment in Anaconda for tensorflow-gpu. From the Start menu in Windows, search for the Anaconda Prompt utility, right click on it, and click âRun as Administratorâ. If Windows asks you if you would like to allow it to make changes to your computer, click Yes.
+Next, we'll work on setting up a virtual environment in Anaconda for tensorflow-gpu. From the Start menu in Windows, search for the Anaconda Prompt utility, right click on it, and click "Run as Administrator". If Windows asks you if you would like to allow it to make changes to your computer, click Yes.
 
-In the command terminal that pops up, create a new virtual environment called âtensorflow1â by issuing the following command:
+In the command terminal that pops up, create a new virtual environment called "tensorflow1" by issuing the following command:
 ```
 C:\> conda create -n tensorflow1 pip python=3.5
 ```
@@ -109,7 +109,7 @@ Install the other necessary packages by issuing the following commands:
 (tensorflow1) C:\> pip install pandas
 (tensorflow1) C:\> pip install opencv-python
 ```
-(Note: The âpandasâ and âopencv-pythonâ packages are not needed by TensorFlow, but they are used in the Python scripts to generate TFRecords and to work with images, videos, and webcam feeds.)
+
 
 #### 2e. Configure PYTHONPATH environment variable
 A PYTHONPATH variable must be created that points to the \models, \models\research, and \models\research\slim directories. Do this by issuing the following commands (from any directory):
@@ -119,7 +119,7 @@ A PYTHONPATH variable must be created that points to the \models, \models\resear
 (Note: Every time the "tensorflow1" virtual environment is exited, the PYTHONPATH variable is reset and needs to be set up again. You can use "echo %PYTHONPATH% to see if it has been set or not.)
 
 #### 2f. Compile Protobufs and run setup.py
-Next, compile the Protobuf files, which are used by TensorFlow to configure model and training parameters. Unfortunately, the short protoc compilation command posted on TensorFlowâs Object Detection API [installation page](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md) does not work on Windows. Every  .proto file in the \object_detection\protos directory must be called out individually by the command.
+Next, compile the Protobuf files, which are used by TensorFlow to configure model and training parameters. Unfortunately, the short protoc compilation command posted on TensorFlow's Object Detection API [installation page](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md) does not work on Windows. Every  .proto file in the \object_detection\protos directory must be called out individually by the command.
 
 In the Anaconda Command Prompt, change directories to the \models\research directory:
 ```
@@ -145,7 +145,7 @@ The TensorFlow Object Detection API is now all set up to use pre-trained models 
 ```
 (tensorflow1) C:\tensorflow1\models\research\object_detection> jupyter notebook object_detection_tutorial.ipynb
 ```
-This opens the script in your default web browser and allows you to step through the code one section at a time. You can step through each section by clicking the âRunâ button in the upper toolbar. The section is done running when the âIn [ * ]â text next to the section populates with a number (e.g. âIn [1]â). 
+ 
 
 (Note: part of the script downloads the ssd_mobilenet_v1 model from GitHub, which is about 74MB. This means it will take some time to complete the section, so be patient.)
 
@@ -171,12 +171,12 @@ For my Pinochle Card Detection classifier, I have six different objects I want t
 
 You can use your phone to take pictures of the objects or download images of the objects from Google Image Search. I recommend having at least 200 pictures overall. I used 311 pictures to train my card detector.
 
-Make sure the images arenât too large. They should be less than 200KB each, and their resolution shouldnât be more than 720x1280. The larger the images are, the longer it will take to train the classifier. You can use the resizer.py script in this repository to reduce the size of the images.
+Make sure the images aren't too large. They should be less than 200KB each, and their resolution shouldn't be more than 720x1280. The larger the images are, the longer it will take to train the classifier. You can use the resizer.py script in this repository to reduce the size of the images.
 
 After you have all the pictures you need, move 20% of them to the \object_detection\images\test directory, and 80% of them to the \object_detection\images\train directory. Make sure there are a variety of pictures in both the \test and \train directories.
 
 #### 3b. Label Pictures
-Here comes the fun part! With all the pictures gathered, itâs time to label the desired objects in every picture. LabelImg is a great tool for labeling images, and its GitHub page has very clear instructions on how to install and use it.
+Here comes the fun part! With all the pictures gathered, it's time to label the desired objects in every picture. LabelImg is a great tool for labeling images, and its GitHub page has very clear instructions on how to install and use it.
 
 [LabelImg GitHub link](https://github.com/tzutalin/labelImg)
 
@@ -266,7 +266,7 @@ item {
 
 item {
   id: 5
-  name: 'traffic_ligh'
+  name: 'traffic_light'
 }
 
 ```
@@ -340,22 +340,22 @@ This will create a webpage on your local machine at YourPCName:6006, which can b
 The training routine periodically saves checkpoints about every five minutes. You can terminate the training by pressing Ctrl+C while in the command prompt window. I typically wait until just after a checkpoint has been saved to terminate the training. You can terminate training and start it later, and it will restart from the last saved checkpoint. The checkpoint at the highest number of steps will be used to generate the frozen inference graph.
 
 ### 7. Export Inference Graph
-Now that training is complete, the last step is to generate the frozen inference graph (.pb file). From the \object_detection folder, issue the following command, where âXXXXâ in âmodel.ckpt-XXXXâ should be replaced with the highest-numbered .ckpt file in the training folder:
+Now that training is complete, the last step is to generate the frozen inference graph (.pb file). From the \object_detection folder, issue the following command, where XXXX in model.ckpt-XXXX should be replaced with the highest-numbered .ckpt file in the training folder:
 ```
 python export_inference_graph.py --input_type image_tensor --pipeline_config_path training/faster_rcnn_inception_v2_pets.config --trained_checkpoint_prefix training/model.ckpt-XXXX --output_directory inference_graph
 ```
 This creates a frozen_inference_graph.pb file in the \object_detection\inference_graph folder. The .pb file contains the object detection classifier.
 
 ### 8. Use Your Newly Trained Object Detection Classifier!
-The object detection classifier is all ready to go! Iâve written Python scripts to test it out on an image, video, or webcam feed.
+The object detection classifier is all ready to go! I've written Python scripts to test it out on an image, video, or webcam feed.
 
 Before running the Python scripts, you need to modify the NUM_CLASSES variable in the script to equal the number of classes you want to detect. (For my Pinochle Card Detector, there are six cards I want to detect, so NUM_CLASSES = 6.)
 
 To test your object detector, move a picture of the object or objects into the \object_detection folder, and change the IMAGE_NAME variable in the Object_detection_image.py to match the file name of the picture. Alternatively, you can use a video of the objects (using Object_detection_video.py), or just plug in a USB webcam and point it at the objects (using Object_detection_webcam.py).
 
-To run any of the scripts, type âidleâ in the Anaconda Command Prompt (with the âtensorflow1â virtual environment activated) and press ENTER. This will open IDLE, and from there, you can open any of the scripts and run them.
+To run any of the scripts, type idle in the Anaconda Command Prompt (with the tensorflow1 virtual environment activated) and press ENTER. This will open IDLE, and from there, you can open any of the scripts and run them.
 
-If everything is working properly, the object detector will initialize for about 10 seconds and then display a window showing any objects itâs detected in the image!
+If everything is working properly, the object detector will initialize for about 10 seconds and then display a window showing any objects it's detected in the image!
 
 <p align="center">
   <img src="doc/detector2.jpg">
@@ -368,9 +368,9 @@ It appears that the TensorFlow Object Detection API was developed on a Linux-bas
 
 #### 1. ModuleNotFoundError: No module named 'deployment' or No module named 'nets'
 
-This error occurs when you try to run object_detection_tutorial.ipynb or train.py and you donât have the PATH and PYTHONPATH environment variables set up correctly. Exit the virtual environment by closing and re-opening the Anaconda Prompt window. Then, issue âactivate tensorflow1â to re-enter the environment, and then issue the commands given in Step 2e. 
+This error occurs when you try to run object_detection_tutorial.ipynb or train.py and you don't have the PATH and PYTHONPATH environment variables set up correctly. Exit the virtual environment by closing and re-opening the Anaconda Prompt window. Then, issue activate tensorflow1â to re-enter the environment, and then issue the commands given in Step 2e. 
 
-You can use âecho %PATH%â and âecho %PYTHONPATH%â to check the environment variables and make sure they are set up correctly.
+You can use echo %PATH% and echo %PYTHONPATH% to check the environment variables and make sure they are set up correctly.
 
 Also, make sure you have run these commands from the \models\research directory:
 ```
@@ -390,15 +390,15 @@ This occurs when the protobuf files (in this case, preprocessor.proto) have not 
 
 This occurs when you try to run the
 ```
-âprotoc object_detection/protos/*.proto --python_out=.â
+âprotoc object_detection/protos/*.proto --python_out=
 ```
-command given on the TensorFlow Object Detection API installation page. Sorry, it doesnât work on Windows! Copy and paste the full command given in Step 2f instead. Thereâs probably a more graceful way to do it, but I donât know what it is.
+command given on the TensorFlow Object Detection API installation page. Sorry, it doesnt work on Windows! Copy and paste the full command given in Step 2f instead. Thereâs probably a more graceful way to do it, but I dont know what it is.
 
-#### 4. Unsuccessful TensorSliceReader constructor: Failed to get "file path" â¦ The filename, directory name, or volume label syntax is incorrect.
+#### 4. Unsuccessful TensorSliceReader constructor: Failed to get "file path" ¦ The filename, directory name, or volume label syntax is incorrect.
   
 This error occurs when the filepaths in the training configuration file (faster_rcnn_inception_v2_pets.config or similar) have not been entered with backslashes instead of forward slashes. Open the .config file and make sure all file paths are given in the following format:
 ```
-âC:/path/to/model.fileâ
+C:/path/to/model.file
 ```
 
 #### 5. ValueError: Tried to convert 't' to a tensor and failed. Error: Argument must be a dense tensor: range(0, 3) - got shape [3], but wanted [].
