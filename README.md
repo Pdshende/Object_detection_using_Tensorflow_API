@@ -17,10 +17,14 @@ This readme describes every step required to get going with your own object dete
 8. [Testing and using your newly trained object detection classifier](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#8-use-your-newly-trained-object-detection-classifier)
 [Appendix: Common Errors](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#appendix-common-errors)
 
+
+[![Link to my YouTube video!](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/blob/master/doc/Picture4.PNG)](https://www.youtube.com/watch?v=-gXWM_5ezoc)
+
+
 The repository provides all the files needed to train a "object_detection" for diffrent types of things such as car 🚘, person 🤵, bike 🚲,etc.
 The tutorial describes how to replace these files with your own files to train a detection classifier for whatever your heart desires. It also has Python scripts to test your classifier out on an image, video, or webcam feed.
 <p align="center">
-  <img src="doc/picture2.jpg">
+  <img src="doc/Picture2.png">
 </p>
 
 ## Introduction
@@ -63,7 +67,7 @@ Download the full repository located on this page (scroll to the top and click C
 
 At this point, here is what your \object_detection folder should look like:
 <p align="center">
-  <img src="doc/picture3.png">
+  <img src="doc/Picture3.PNG">
 </p>
 This repository contains the xml_to_csv.py, generate_tf_record.py, resizer.py, video_frame.py, object_deetction.ipynb
 
@@ -195,7 +199,7 @@ Here comes the fun part! With all the pictures gathered, it's time to label the 
 Download and install LabelImg, point it to your \images\train directory, and then draw a box around each object in each image. Repeat the process for all the images in the \images\test directory. This will take a while! 
 
 <p align="center">
-  <img src="doc/labels.jpg">
+  <img src="doc/Picture5.PNG">
 </p>
 
 LabelImg saves a .xml file containing the label data for each image. These .xml files will be used to generate TFRecords, which are one of the inputs to the TensorFlow trainer. Once you have labeled and saved each image, there will be one .xml file for each image in the \test and \train directories.
@@ -332,7 +336,7 @@ python train.py --logtostderr --train_dir=training/ --pipeline_config_path=train
 If everything has been set up correctly, TensorFlow will initialize the training. The initialization can take up to 30 seconds before the actual training begins. When training begins, it will look like this:
 
 <p align="center">
-  <img src="doc/training.jpg">
+  <img src="doc/Picture6.PNG">
 </p>
 
 Each step of training reports the loss. It will start high and get lower and lower as training progresses. For my training on the Faster-RCNN-Inception-V2 model, it started at about 3.0 and quickly dropped below 0.8. I recommend allowing your model to train until the loss consistently drops below 0.05, which will take about 40,000 steps, or about 2 hours (depending on how powerful your CPU and GPU are). Note: The loss numbers will be different if a different model is used. MobileNet-SSD starts with a loss of about 20, and should be trained until the loss is consistently under 2.
@@ -344,7 +348,7 @@ You can view the progress of the training job by using TensorBoard. To do this, 
 This will create a webpage on your local machine at YourPCName:6006, which can be viewed through a web browser. The TensorBoard page provides information and graphs that show how the training is progressing. One important graph is the Loss graph, which shows the overall loss of the classifier over time.
 
 <p align="center">
-  <img src="doc/loss_graph.JPG">
+  <img src="doc/Picture7.PNG">
 </p>
 
 The training routine periodically saves checkpoints about every five minutes. You can terminate the training by pressing Ctrl+C while in the command prompt window. I typically wait until just after a checkpoint has been saved to terminate the training. You can terminate training and start it later, and it will restart from the last saved checkpoint. The checkpoint at the highest number of steps will be used to generate the frozen inference graph.
@@ -368,7 +372,11 @@ To run any of the scripts, type idle in the Anaconda Command Prompt (with the te
 If everything is working properly, the object detector will initialize for about 10 seconds and then display a window showing any objects it's detected in the image!
 
 <p align="center">
-  <img src="doc/detector2.jpg">
+  <img src="doc/Picture1.png">
+</p>
+
+<p align="center">
+  <img src="doc/Picture2.png">
 </p>
 
 If you encounter errors, please check out the Appendix: it has a list of errors that I ran in to while setting up my object detection classifier. You can also trying Googling the error. There is usually useful information on Stack Exchange or in TensorFlows Issues on GitHub.
