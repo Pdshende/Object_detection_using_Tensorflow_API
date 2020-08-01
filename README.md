@@ -20,7 +20,7 @@ This readme describes every step required to get going with your own object dete
 The repository provides all the files needed to train a "object_detection" for diffrent types of things such as car 🚘, person 🤵, bike 🚲,etc.
 The tutorial describes how to replace these files with your own files to train a detection classifier for whatever your heart desires. It also has Python scripts to test your classifier out on an image, video, or webcam feed.
 <p align="center">
-  <img src="doc/detector1.jpg">
+  <img src="doc/picture2.jpg">
 </p>
 
 ## Introduction
@@ -63,7 +63,7 @@ Download the full repository located on this page (scroll to the top and click C
 
 At this point, here is what your \object_detection folder should look like:
 <p align="center">
-  <img src="doc/object_detection_directory.jpg">
+  <img src="doc/picture3.png">
 </p>
 This repository contains the xml_to_csv.py, generate_tf_record.py, resizer.py, video_frame.py, object_deetction.ipynb
 
@@ -170,9 +170,6 @@ Once you have stepped all the way through the script, you should see two labeled
 
 **Note: If you run the full Jupyter Notebook without getting any errors, but the labeled pictures still don't appear, try this: go in to object_detection/utils/visualization_utils.py and comment out the import statements around lines 29 and 30 that include matplotlib. Then, try re-running the Jupyter notebook.**
 
-<p align="center">
-  <img src="doc/jupyter_notebook_dogs.jpg">
-</p>
 
 ### 3. Gather and Label Pictures
 Now that the TensorFlow Object Detection API is all set up and ready to go, we need to provide the images it will use to train a new detection classifier.
@@ -181,9 +178,6 @@ Now that the TensorFlow Object Detection API is all set up and ready to go, we n
 TensorFlow needs hundreds of images of an object to train a good detection classifier. To train a robust classifier, the training images should have random objects in the image along with the desired objects, and should have a variety of backgrounds and lighting conditions. There should be some images where the desired object is partially obscured, overlapped with something else, or only halfway in the picture. 
 
 
-<p align="center">
-  <img src="doc/collage.jpg">
-</p>
 
 You can use your phone to take pictures of the objects or download images of the objects from Google Image Search. I recommend having at least 200 pictures overall. I used 311 pictures to train my card detector.
 
