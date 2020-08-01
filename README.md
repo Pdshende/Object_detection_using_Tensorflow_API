@@ -1,11 +1,8 @@
-# How To Train an Object Detection Classifier for Multiple Objects Using TensorFlow (GPU) on Windows 10
+# How To Train an Object Detection  Using TensorFlow (GPU) on Windows 10
 ## Brief Summary
 *Last updated: 7/31/2020 with tensorflow v1. 1.15.0
 
-This repository is a tutorial for how to use TensorFlow's Object Detection API to 
-train an object detection classifier for multiple objects on Windows 10, 8, or 7.
-(It will also work on Linux-based OSes with some minor changes.) It was originally
-written using TensorFlow version 1.5, but will also work for newer versions of TensorFlow.
+In this article, we will go over all the steps needed to create our object detector from gathering the data all the way to testing our newly created object detector.
 
 I also made a YouTube video that walks through this tutorial. Any discrepancies between the video and this written tutorial are due to updates required for using newer versions of TensorFlow. 
 
@@ -68,9 +65,9 @@ At this point, here is what your \object_detection folder should look like:
 <p align="center">
   <img src="doc/object_detection_directory.jpg">
 </p>
-This repository contains the images, annotation data, .csv files, and TFRecords needed to train a "Pinochle Deck" playing card detector. You can use these images and data to practice making your own Pinochle Card Detector. It also contains Python scripts that are used to generate the training data. It has scripts to test out the object detection classifier on images, videos, or a webcam feed. You can ignore the \doc folder and its files; they are just there to hold the images used for this readme.
+This repository contains the xml_to_csv.py, generate_tf_record.py, resizer.py, video_frame.py, object_deetction.ipynb
 
-If you want to practice training your own "Pinochle Deck" card detector, you can leave all the files as they are. You can follow along with this tutorial to see how each of the files were generated, and then run the training. You will still need to generate the TFRecord files (train.record and test.record) as described in Step 4. 
+If you want to practice training your own object detector, you can leave all the files as they are. You can follow along with this tutorial to see how each of the files were generated, and then run the training. You will still need to generate the TFRecord files (train.record and test.record) as described in Step 4. 
 If you want to train your own object detector, delete the following files (do not delete the folders):
 - All files in \object_detection\images\train and \object_detection\images\test
 - The "test_labels.csv" and "train_labels.csv" files in \object_detection\images
@@ -111,7 +108,22 @@ Install the other necessary packages by issuing the following commands:
 (tensorflow1) C:\> pip install pandas
 (tensorflow1) C:\> pip install opencv-python
 ```
+Installation of Docker file
 
+```
+# From the root of the git repository
+docker build -f research/object_detection/dockerfiles/tf1/Dockerfile -t od .
+docker run -it od
+```
+Python Package Installation
+```
+cd models/research
+# Compile protos.
+protoc object_detection/protos/*.proto --python_out=.
+# Install TensorFlow Object Detection API.
+cp object_detection/packages/tf1/setup.py .
+python -m pip install .
+```
 
 #### 2e. Configure PYTHONPATH environment variable
 A PYTHONPATH variable must be created that points to the \models, \models\research, and \models\research\slim directories. Do this by issuing the following commands (from any directory):
@@ -133,7 +145,10 @@ Then copy and paste the following command into the command line and press Enter:
 protoc --python_out=. .\object_detection\protos\anchor_generator.proto .\object_detection\protos\argmax_matcher.proto .\object_detection\protos\bipartite_matcher.proto .\object_detection\protos\box_coder.proto .\object_detection\protos\box_predictor.proto .\object_detection\protos\eval.proto .\object_detection\protos\faster_rcnn.proto .\object_detection\protos\faster_rcnn_box_coder.proto .\object_detection\protos\grid_anchor_generator.proto .\object_detection\protos\hyperparams.proto .\object_detection\protos\image_resizer.proto .\object_detection\protos\input_reader.proto .\object_detection\protos\losses.proto .\object_detection\protos\matcher.proto .\object_detection\protos\mean_stddev_box_coder.proto .\object_detection\protos\model.proto .\object_detection\protos\optimizer.proto .\object_detection\protos\pipeline.proto .\object_detection\protos\post_processing.proto .\object_detection\protos\preprocessor.proto .\object_detection\protos\region_similarity_calculator.proto .\object_detection\protos\square_box_coder.proto .\object_detection\protos\ssd.proto .\object_detection\protos\ssd_anchor_generator.proto .\object_detection\protos\string_int_label_map.proto .\object_detection\protos\train.proto .\object_detection\protos\keypoint_box_coder.proto .\object_detection\protos\multiscale_anchor_generator.proto .\object_detection\protos\graph_rewriter.proto .\object_detection\protos\calibration.proto .\object_detection\protos\flexible_grid_anchor_generator.proto
 ```
 This creates a name_pb2.py file from every name.proto file in the \object_detection\protos folder.
-
+or 
+```
+python use_protobuf.py <path to directory> <path to protoc file>
+```
 **(Note: TensorFlow occassionally adds new .proto files to the \protos folder. If you get an error saying ImportError: cannot import name 'something_something_pb2' , you may need to update the protoc command to include the new .proto files.)**
 
 Finally, run the following commands from the C:\tensorflow1\models\research directory:
@@ -145,7 +160,7 @@ Finally, run the following commands from the C:\tensorflow1\models\research dire
 #### 2g. Test TensorFlow setup to verify it works
 The TensorFlow Object Detection API is now all set up to use pre-trained models for object detection, or to train a new one. You can test it out and verify your installation is working by launching the object_detection_tutorial.ipynb script with Jupyter. From the \object_detection directory, issue this command:
 ```
-(tensorflow1) C:\tensorflow1\models\research\object_detection> jupyter notebook object_detection_tutorial.ipynb
+(tensorflow1) C:\tensorflow1\models\research\object_detection> jupyter notebook object_detection_with_own_model.ipynb
 ```
  
 
