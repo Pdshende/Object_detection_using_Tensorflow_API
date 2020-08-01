@@ -17,6 +17,9 @@ This readme describes every step required to get going with your own object dete
 8. [Testing and using your newly trained object detection classifier](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#8-use-your-newly-trained-object-detection-classifier)
 [Appendix: Common Errors](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/#appendix-common-errors)
 
+This is my Youtube Video link
+
+👇
 
 [![Link to my YouTube video!](https://github.com/Pdshende/Object_detection_using_Tensorflow_API/blob/master/doc/Picture4.PNG)](https://www.youtube.com/watch?v=-gXWM_5ezoc)
 
@@ -183,7 +186,7 @@ TensorFlow needs hundreds of images of an object to train a good detection class
 
 
 
-You can use your phone to take pictures of the objects or download images of the objects from Google Image Search. I recommend having at least 200 pictures overall. I used 311 pictures to train my card detector.
+You can use your phone to take pictures of the objects or download images of the objects from Google Image Search. I recommend having at least 200 pictures overall. I used 311 pictures to train my object detector.
 
 Make sure the images aren't too large. They should be less than 200KB each, and their resolution shouldn't be more than 720x1280. The larger the images are, the longer it will take to train the classifier. You can use the resizer.py script in this repository to reduce the size of the images.
 
@@ -363,7 +366,7 @@ This creates a frozen_inference_graph.pb file in the \object_detection\inference
 ### 8. Use Your Newly Trained Object Detection Classifier!
 The object detection classifier is all ready to go! I've written Python scripts to test it out on an image, video, or webcam feed.
 
-Before running the Python scripts, you need to modify the NUM_CLASSES variable in the script to equal the number of classes you want to detect. (For my Pinochle Card Detector, there are six cards I want to detect, so NUM_CLASSES = 6.)
+Before running the Python scripts, you need to modify the NUM_CLASSES variable in the script to equal the number of classes you want to detect. 
 
 To test your object detector, move a picture of the object or objects into the \object_detection folder, and change the IMAGE_NAME variable in the Object_detection_image.py to match the file name of the picture. Alternatively, you can use a video of the objects (using Object_detection_video.py), or just plug in a USB webcam and point it at the objects (using Object_detection_webcam.py).
 
